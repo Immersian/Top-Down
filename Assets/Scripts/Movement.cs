@@ -4,30 +4,70 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float Speed = 1f;
-    Rigidbody2D _rigidbody;
-    Collider2D _collider2D;
-    private float t = 0.0f;
-    public float Horizontal;
-    public float Vertical;
+    public float speed = 0.5f;
+    public Rigidbody2D rb;
+    public Collider2D _collider2D;
+    private Vector2 input;
+    public GameObject graphics;
+
+    Animator anim;
+    private Vector2 lastMoveDirection;
+    private bool facingLeft = false;
+    SpriteRenderer _spritePlayer;
 
     // Start is called before the first frame update
     void Start()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         _collider2D = GetComponent<Collider2D>();
+        _spritePlayer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Horizontal = Input.GetAxisRaw("Horizontal");
-        Vertical = Input.GetAxisRaw("Vertical");
+        ProcessInputs();
+        Animate();
+        if (input.x < 0 && !facingLeft || input.x  > 0 && facingLeft) 
+        {
+            Flip();
+        }
 
-        
     }
     public void FixedUpdate()
     {
-        _rigidbody.velocity = new Vector2(Horizontal * Speed, Vertical * Speed);
+        rb.velocity = input * speed;
+    }
+    void ProcessInputs()
+    {
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveY = Input.GetAxisRaw("Vertical");
+
+        if ((moveX != 0 || moveY != 0) && (moveX == 0 || moveY == 0))
+        {
+            lastMoveDirection = new Vector2(moveX, moveY);
+        }
+
+        input.x = moveX;
+        input.y = moveY;
+
+        input.Normalize();
+    }
+    void Animate()
+    {
+        anim.SetFloat("MoveX", input.x);
+        anim.SetFloat("MoveY", input.y);
+        anim.SetFloat("MoveMagnitude", input.magnitude);
+        anim.SetFloat("LastMoveX", lastMoveDirection.x);
+        anim.SetFloat("LastMoveY", lastMoveDirection.y);
+    }
+    void Flip()
+    {
+        Vector3 scale = graphics.transform.localScale;
+        scale.x *= -1;
+        graphics.transform.localScale = scale;
+        facingLeft = !facingLeft;
+        
     }
 }

@@ -175,7 +175,8 @@ MonoBehaviour:
   Speed: 10
   Horizontal: 0
   Vertical: 0
-  rotationSpeed: 5
+  flipX: 0
+  _spritePlayer: {fileID: 0}
 --- !u!1 &8524581323816845594
 GameObject:
   m_ObjectHideFlags: 0
