@@ -37,10 +37,32 @@ public class WeaponHandler : MonoBehaviour
         {
             CurrentWeapon.Shoot();
         }
+        else
+        {
+            CurrentWeapon.StopShoot();
+        }
     }
-    public void EquipWeapon(Weapon weapon)
+    public void EquipWeapon(GameObject equipWeapon)
     {
-        if (weapon == null) return;
+        if (equipWeapon == null)
+            return;
+
+        if (CurrentWeapon != null)
+        {
+            // Check if the CurrentWeapon is not null before destroying
+            Destroy(CurrentWeapon.gameObject);
+        }
+
+        // Instantiate the new weapon with GunPosition as parent
+        GameObject weaponGO = GameObject.Instantiate(equipWeapon, GunPosition.position, GunPosition.rotation, GunPosition);
+        Weapon weapon = weaponGO.GetComponent<Weapon>();
+
+        // Check if the instantiated object has the Weapon component
+        if (weapon == null)
+            return;
+
         CurrentWeapon = weapon;
+
+        Debug.Log("Weapon equipped in WeaponHandler");
     }
 }

@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 2077820031800530292}
   - component: {fileID: 6541834505646464962}
   - component: {fileID: 6915290166031606422}
+  - component: {fileID: 2095754016744180550}
+  - component: {fileID: 2998081901481906176}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Projectile
@@ -29,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 864415196864189991}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.9998, y: -2.0125, z: 0}
+  m_LocalPosition: {x: 1.9998, y: -2.0125, z: -1}
   m_LocalScale: {x: 3.1036, y: 3.1036, z: 3.1036}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -51,10 +53,13 @@ MonoBehaviour:
   Damage: 1
   Speed: 1000
   PushForce: 50
-  LifeTime: 1
   TargetLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  LifeTime:
+    CurrentProgress: 0
+    Duration: 1
+    _currentDuration: 0
 --- !u!61 &2077820031800530292
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -84,10 +89,10 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.000000059604645, y: -0.00000011920929}
+  m_Offset: {x: -0.000000059604645, y: -0.0024084114}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -98,7 +103,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.100141644, y: 0.32989287}
+  m_Size: {x: 0.100141644, y: 0.1870001}
   m_EdgeRadius: 0
 --- !u!50 &6541834505646464962
 Rigidbody2D:
@@ -139,11 +144,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5445088fe5d0d14291f74977e6c69c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 1
+  damage: 1
+  DamagableFeedback:
+  - {fileID: 3556867866161033744, guid: d7d826c50b6d81a4ea699bdc396da69d, type: 3}
+  AnythingFeedback:
+  - {fileID: 5359226432916480098, guid: eab1b804defe6904493a233baeb9dcae, type: 3}
   TargetLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  Bullet: {fileID: 864415196864189991}
+--- !u!114 &2095754016744180550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864415196864189991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2028e21748670a4e9359e1bec769ec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 1
+  Speed: 100
+  PushForce: 1
+  TargetLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  LifeTime:
+    CurrentProgress: 0
+    Duration: 1
+    _currentDuration: 0
+--- !u!114 &2998081901481906176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864415196864189991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212d9559e8809cf4a81c49d2ec64ca8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fixedZPosition: -10
 --- !u!1 &4537220723722184051
 GameObject:
   m_ObjectHideFlags: 0

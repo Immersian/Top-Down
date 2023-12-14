@@ -1,63 +1,34 @@
+using BarthaSzabolcs.Tutorial_SpriteFlash;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public delegate void HitEvent(GameObject source);
-    public HitEvent Onhit;
+    public SimpleFlash flash;
+    public int maxHealth = 10;
+    public int health;
 
-    public delegate void ResetEvent();
-    public ResetEvent OnHitReset;
+    [SerializeField] FloatingHealthBar healthBar;
 
-    public float MaxHealth = 10f;
-    public Cooldown Invulnerable;
-
-    public float CurrentHealth
+    private void Awake()
     {
-        get { return _currentHealth; }
+        healthBar = GetComponentInChildren<FloatingHealthBar>();
     }
-    private float _currentHealth = 10f;
-    private bool _canDamage = true;
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        health = maxHealth;
+        healthBar.UpdateHealthBar(health, maxHealth);
     }
-
-    // Update is called once per frame
-    void Update()
+    public void TakeDamage(int damage)
     {
-        
-    }
-    private void ResetInvulnerable()
-    {
-        if (_canDamage)
-            return;
-        if (Invulnerable.IsOnCooldown && _canDamage == false)
-            return;
-        _canDamage = true;
-        OnHitReset?.Invoke();
-    }
-    public void Damage(float damage, GameObject source)
-    {
-        if (!_canDamage) 
-            return;
-
-        _currentHealth -= damage;
-        if (_currentHealth <= 0f)
+        health -= damage;
+        healthBar.UpdateHealthBar(health, maxHealth);
+        if (health <= 0) 
         {
-            _currentHealth = 0f;
-            Die();
+            Destroy(gameObject);
         }
+        flash.Flash();
 
-        Invulnerable.StartCooldown();
-        _canDamage = false;
-
-        Onhit?.Invoke(source);
-    }
-    public void Die()
-    {
-        Destroy(this.gameObject);
     }
 }

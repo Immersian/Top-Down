@@ -1,31 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Rotation : MonoBehaviour
 {
     public float rotationOffset = 90.0f; // Offset rotation to align with the gun's direction
+    public Transform player; // Reference to the player's Transform
 
     // Update is called once per frame
     void Update()
     {
-        // Get the Screen positions of the object
-        Vector2 positionOnScreen = Camera.main.WorldToViewportPoint(transform.position);
+        // Get the World position of the mouse
+        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorldPosition.z = 0f; // Ensure the same Z position as the player
 
-        // Get the Screen position of the mouse
-        Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
+        // Calculate the direction from the player to the mouse
+        Vector3 directionToMouse = mouseWorldPosition - player.position;
 
-        // Get the angle between the points
-        float angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
+        // Calculate the rotation angle in degrees
+        float angle = Mathf.Atan2(directionToMouse.y, directionToMouse.x) * Mathf.Rad2Deg;
 
-        // Ta Daaa - Apply the offset to the angle
-        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + rotationOffset));
-    }
-
-    float AngleBetweenTwoPoints(Vector3 a, Vector3 b)
-    {
-        return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
+        // Apply the offset to the rotation
+        transform.rotation = Quaternion.Euler(0f, 0f, angle + rotationOffset);
     }
 }
+
+
+
+
 
 

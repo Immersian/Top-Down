@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Tilemap
+  - Projectile
+  - Wall
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -12,9 +15,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Enemy
+  - Obstacle
+  - Player
   - 
   - 
   - 

@@ -11,7 +11,6 @@ public class Projectile : MonoBehaviour
     public LayerMask TargetLayerMask;
 
     private Rigidbody2D _rigidbody;
-    private float _timer = 0f;
     private BulletCollision _damageOnTouch;
     public Cooldown LifeTime;
 
@@ -22,9 +21,9 @@ public class Projectile : MonoBehaviour
             return;
         _rigidbody.AddRelativeForce(new Vector2(0f, Speed));
 
-        _damageOnTouch = GetComponent<BulletCollision>();
-        if (_damageOnTouch != null)
-            _damageOnTouch.OnHit += Die;
+        //_damageOnTouch = GetComponent<BulletCollision>();
+        //if (_damageOnTouch != null)
+        //    _damageOnTouch.OnHit += Die;
         LifeTime.StartCooldown();
     }
     private void Update()
@@ -36,8 +35,8 @@ public class Projectile : MonoBehaviour
     }
     private void Die()
     {
-        if (_damageOnTouch != null)
-            _damageOnTouch.OnHit -= Die;
+        //if (_damageOnTouch != null)
+        //    _damageOnTouch.OnHit -= Die;
 
         LifeTime.StopCooldown();
         Destroy(gameObject);
