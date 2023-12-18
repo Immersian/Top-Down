@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractGun : MonoBehaviour
+public abstract class InteractGun : MonoBehaviour
 {
-    public GameObject Weapon;
+    //public GameObject Weapon;
     public GameObject[] PickupFeedbacks;
     public LayerMask TargetLayerMask;
 
@@ -16,11 +16,11 @@ public class InteractGun : MonoBehaviour
 
         // Check if the collided object has the WeaponHandler component
         WeaponHandler weaponHandler = other.GetComponent<WeaponHandler>();
-        if (weaponHandler == null)
-            return;
+        //if (weaponHandler == null)
+        //    return;
 
-        // Equip the weapon and instantiate pickup feedbacks
-        weaponHandler.EquipWeapon(Weapon);
+        //// Equip the weapon and instantiate pickup feedbacks
+        //weaponHandler.EquipWeapon(Weapon);
 
         foreach (var feedback in PickupFeedbacks)
         {
@@ -31,12 +31,17 @@ public class InteractGun : MonoBehaviour
         }
 
         // Prevent the Weapon object from being destroyed when the scene changes
-        DontDestroyOnLoad(Weapon);
+        //DontDestroyOnLoad(Weapon);
 
         // Destroy the InteractGun object
         Destroy(gameObject);
 
         Debug.Log("Weapon equipped");
+
+    }
+    protected virtual void PickedUp(Collider2D collider)
+    {
+
     }
 }
 

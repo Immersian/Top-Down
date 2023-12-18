@@ -4,6 +4,13 @@ public class Rotation : MonoBehaviour
 {
     public float rotationOffset = 90.0f; // Offset rotation to align with the gun's direction
     public Transform player; // Reference to the player's Transform
+    protected WeaponHandler weaponHandler;
+
+    private void Start()
+    {
+        weaponHandler = transform.root.GetComponent<WeaponHandler>();
+
+    }
 
     // Update is called once per frame
     void Update()
@@ -20,8 +27,15 @@ public class Rotation : MonoBehaviour
 
         // Apply the offset to the rotation
         transform.rotation = Quaternion.Euler(0f, 0f, angle + rotationOffset);
+
+        if (weaponHandler == null && weaponHandler.CurrentWeapon)
+            return;
     }
 }
+
+
+
+
 
 
 

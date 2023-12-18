@@ -8,6 +8,8 @@ public class Health : MonoBehaviour
     public SimpleFlash flash;
     public int maxHealth = 10;
     public int health;
+    public delegate void DeathEvent();
+    public DeathEvent OnDeath;
 
     [SerializeField] FloatingHealthBar healthBar;
 
@@ -26,9 +28,14 @@ public class Health : MonoBehaviour
         healthBar.UpdateHealthBar(health, maxHealth);
         if (health <= 0) 
         {
-            Destroy(gameObject);
+            Die();
         }
         flash.Flash();
 
+    }
+    public void Die()
+    {
+        OnDeath?.Invoke();
+        Destroy(gameObject);
     }
 }

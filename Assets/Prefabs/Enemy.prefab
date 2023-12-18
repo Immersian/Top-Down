@@ -153,6 +153,9 @@ GameObject:
   - component: {fileID: 5064963489433679228}
   - component: {fileID: 4808620287024583133}
   - component: {fileID: 1721242741448060210}
+  - component: {fileID: 6257513907402616132}
+  - component: {fileID: 6006128895593944834}
+  - component: {fileID: 1522941215660671796}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
@@ -352,6 +355,46 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6257513907402616132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4684150781106923432}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374056dfeb13ac14785903b2be88fd10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6006128895593944834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4684150781106923432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc41b4113c0c04e428385121260e041c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: {fileID: 0}
+--- !u!114 &1522941215660671796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4684150781106923432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e94d1390dabcd041855ea216e4ec434, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DropChance: 100000
+  RandomLoots:
+  - {fileID: 522181374490048124, guid: d1e1a09ea033d6b4d9a7bafff4446836, type: 3}
 --- !u!1 &4892973584239053607
 GameObject:
   m_ObjectHideFlags: 0

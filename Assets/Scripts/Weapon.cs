@@ -50,7 +50,9 @@ public class Weapon : MonoBehaviour
     {
         Auto,
         SingleFire,
-        BurstFire
+        BurstFire,
+        Shotgun
+
     }
     public FireModes FireMode;
     public int ProjectileCount = 1;
@@ -103,6 +105,11 @@ public class Weapon : MonoBehaviour
                 case FireModes.BurstFire:
                 {
                     BurstFireShoot();
+                    break;
+                }
+            case FireModes.Shotgun:
+                {
+                    Shotgun();
                     break;
                 }
         }
@@ -181,6 +188,19 @@ public class Weapon : MonoBehaviour
         GameObject bullet = GameObject.Instantiate(Projectile, SpawnPos.position, SpawnPos.rotation);
         SpawnFeedback();
     }
+    void ShootProjectileSpread()
+    {
+        GameObject bullet = GameObject.Instantiate(Projectile, SpawnPos.position, SpawnPos.rotation);
+
+        Quaternion rotationOffset = Quaternion.Euler(0.0f, 0.0f, 20.0f); 
+        Quaternion rotationOffset3 = Quaternion.Euler(0.0f, 0.0f, -20.0f); 
+
+        GameObject bullet2 = GameObject.Instantiate(Projectile, SpawnPos.position, SpawnPos.rotation * rotationOffset);
+        GameObject bullet3 = GameObject.Instantiate(Projectile, SpawnPos.position, SpawnPos.rotation * rotationOffset3);
+
+        SpawnFeedback();
+    }
+
     void AutoFireShoot()
     {
         if (!_canShoot)
@@ -219,6 +239,16 @@ public class Weapon : MonoBehaviour
         StartReloading();
 
         
+    }
+    void Shotgun()
+    {
+        if (!_singleFireReset)
+            return;
+
+        ShootProjectileSpread();
+        currentBulletCount--;
+        _singleFireReset = false;
+        StartReloading();
     }
     public void StopShoot()
     {
