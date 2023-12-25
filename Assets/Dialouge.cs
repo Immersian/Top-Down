@@ -24,6 +24,7 @@ public class Dialogue : MonoBehaviour
     private bool waitForNext;
     public Movement movement;
     public GameObject Interact;
+    public GameObject InteractZone;
 
     private void Awake()
     {
@@ -119,6 +120,7 @@ public class Dialogue : MonoBehaviour
                 EndDialogue();
                 movement.enabled = true;
                 Interact.SetActive(true);
+                InteractZone.SetActive(true);
 
             }
         }

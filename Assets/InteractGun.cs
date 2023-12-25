@@ -14,13 +14,7 @@ public abstract class InteractGun : MonoBehaviour
         if (!((TargetLayerMask.value & (1 << other.gameObject.layer)) > 0))
             return;
 
-        // Check if the collided object has the WeaponHandler component
-        WeaponHandler weaponHandler = other.GetComponent<WeaponHandler>();
-        //if (weaponHandler == null)
-        //    return;
-
-        //// Equip the weapon and instantiate pickup feedbacks
-        //weaponHandler.EquipWeapon(Weapon);
+        PickedUp(other);
 
         foreach (var feedback in PickupFeedbacks)
         {
@@ -34,7 +28,6 @@ public abstract class InteractGun : MonoBehaviour
         //DontDestroyOnLoad(Weapon);
 
         // Destroy the InteractGun object
-        Destroy(gameObject);
 
         Debug.Log("Weapon equipped");
 
@@ -44,5 +37,6 @@ public abstract class InteractGun : MonoBehaviour
 
     }
 }
+
 
 

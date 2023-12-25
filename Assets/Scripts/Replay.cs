@@ -13,13 +13,11 @@ public class Replay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
     public void Restart()
     {
@@ -32,7 +30,7 @@ public class Replay : MonoBehaviour
         Debug.Log("Should Quit the game");
 
     }
-    public void Resume()
+    public void Play()
     {
         PauseMenuCanvas.SetActive(false);
         Player.SetActive(true);

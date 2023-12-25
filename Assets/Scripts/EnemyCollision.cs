@@ -27,12 +27,23 @@ public class EnemyCollision : MonoBehaviour
     //        }
     //    }
     //}
-    public PlayerHealth playerHealth;
-    private void OnCollisionEnter2D(Collision2D collision)
+    private PlayerHealth playerHealth;
+    public float damageCooldown = 10f; // Time between damage ticks
+    private float nextDamageTime = 0f;
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Base")
         {
-            playerHealth.TakeDamage(1);
+            if (Time.time >= nextDamageTime)
+            {
+                playerHealth = (PlayerHealth)collision.gameObject.GetComponent<PlayerHealth>();
+
+                if (playerHealth == null)
+                    return;
+
+                playerHealth.TakeDamage(1);
+                nextDamageTime = Time.time + damageCooldown;
+            }
         }
     }
 }

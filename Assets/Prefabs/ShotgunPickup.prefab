@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 8346503518257008641}
   - component: {fileID: 9066687873085772618}
   - component: {fileID: 1943803583545531785}
-  - component: {fileID: 1813883194254094731}
-  m_Layer: 0
+  - component: {fileID: 13401985354487407}
+  m_Layer: 10
   m_Name: ShotgunPickup
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160,7 +160,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1813883194254094731
+--- !u!114 &13401985354487407
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,14 +169,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 522181374490048124}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa570cf1c9654434fa02d6d504745e12, type: 3}
+  m_Script: {fileID: 11500000, guid: 10b8c01a8f3648f469be001abc8476c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Weapon: {fileID: 2623497393552733202, guid: f494542cd3195964d8161202decd23d4, type: 3}
   PickupFeedbacks: []
   TargetLayerMask:
     serializedVersion: 2
     m_Bits: 256
+  Weapon: {fileID: 2623497393552733202, guid: f494542cd3195964d8161202decd23d4, type: 3}
 --- !u!1 &8468345141284679845
 GameObject:
   m_ObjectHideFlags: 0

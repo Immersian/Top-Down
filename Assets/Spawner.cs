@@ -35,19 +35,11 @@ public class Spawner : MonoBehaviour
 
         switch (randomSpawnPos)
         {
-                case(0):
-                Instantiate(Monsters[randomIndex], Top.position + new Vector3(Random.Range(MinX, MaxX), 0), transform .rotation);
-                break;
-                case (1):
-                Instantiate(Monsters[randomIndex], Bot.position + new Vector3(Random.Range(MinX, MaxX), 0), transform.rotation);
-                break;
-                case(2):
-                Instantiate(Monsters[randomIndex], Left.position + new Vector3(0, Random.Range(MinX, MaxX)), transform.rotation);
-                break;
-                case (3):
-                Instantiate(Monsters[randomIndex], Right.position + new Vector3(0, Random.Range(MinX, MaxX)), transform.rotation);
+            case (0):
+                Instantiate(Monsters[randomIndex], Top.position + new Vector3(Random.Range(MinX, MaxX), 0), transform.rotation);
                 break;
         }
+        
 
         _spawnTimer = Random.Range(MinSpawnCooldown, MaxSpawnCooldown);
     }

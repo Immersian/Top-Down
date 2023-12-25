@@ -8,6 +8,9 @@ TagManager:
   - Projectile
   - Wall
   - Enemy
+  - Health
+  - Weapon
+  - Base
   layers:
   - Default
   - TransparentFX
@@ -18,8 +21,8 @@ TagManager:
   - Enemy
   - Obstacle
   - Player
-  - 
-  - 
+  - Health
+  - Weapon
   - 
   - 
   - 

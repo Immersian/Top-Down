@@ -9,6 +9,7 @@ public class Dialouge_trigger : MonoBehaviour
     public Dialogue dialogueScript;
     public Movement movement;
     public GameObject Interact;
+    public GameObject InteractZone;
 
     private bool isPickUpZone = false;
 
@@ -19,6 +20,8 @@ public class Dialouge_trigger : MonoBehaviour
             dialogueScript.StartDialogue();
 
             movement.enabled = false;
+
+            InteractZone.SetActive(false);
 
             Interact.SetActive(false);
         }

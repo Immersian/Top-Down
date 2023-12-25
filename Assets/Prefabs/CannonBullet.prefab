@@ -135,14 +135,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 5
-  Speed: 750
+  Speed: 250
   PushForce: 50
   TargetLayerMask:
     serializedVersion: 2
     m_Bits: 0
   LifeTime:
     CurrentProgress: 0
-    Duration: 1
+    Duration: 2
     _currentDuration: 0
 --- !u!61 &1334166364757289598
 BoxCollider2D:
